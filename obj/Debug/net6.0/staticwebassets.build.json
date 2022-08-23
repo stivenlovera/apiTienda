@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "1vr8K/o2vj6Tm3c7pXTYHFHz1higKpL3dQsziQtH/Bc=",
+  "Hash": "NRvIKwOf35Wrx/+d0t/8+ROgEM7fHrOdI9IWgmGeJCQ=",
   "Source": "apiTienda",
   "BasePath": "_content/apiTienda",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "apiTienda\\wwwroot",
+      "Source": "apiTienda",
+      "ContentRoot": "E:\\STIVEN\\apiTienda\\wwwroot\\",
+      "BasePath": "_content/apiTienda",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "E:\\STIVEN\\apiTienda\\wwwroot\\RegistroApp.txt",
+      "SourceId": "apiTienda",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\STIVEN\\apiTienda\\wwwroot\\",
+      "BasePath": "_content/apiTienda",
+      "RelativePath": "RegistroApp.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\RegistroApp.txt"
+    }
+  ]
 }
