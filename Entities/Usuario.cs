@@ -14,8 +14,8 @@ namespace apiTienda.Entities
         public string User { get; set; }
         public string Contraseña { get; set; }
         [Column("PersonaId")]
+        public int PersonaId { get; set; }
         public Persona Persona { get; set; }
-        [Column("PersonaId")]
         public List<Tienda> Tienda { get; set; }
         [Column("UsuarioId")]
         public List<Preventa> Preventa { get; set; }

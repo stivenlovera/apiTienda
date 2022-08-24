@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using apiTienda.Dto.Persona;
 using apiTienda.Entities;
+using apiTienda.Dto.Usuario;
+using apiTienda.Dto.Producto;
 
 namespace apiTienda.Utilidades
 {
@@ -14,6 +16,16 @@ namespace apiTienda.Utilidades
         public AutoMapperProfile()
         {
             CreateMap<PersonaCreateDto, Persona>();
+            CreateMap<Persona, PersonaDto>();
+            CreateMap<PersonaCreateDto, Persona>();
+
+            CreateMap<UsuarioDto, Usuario>();
+            CreateMap<Usuario, UsuarioDto>();
+            CreateMap<UsuarioCreateDto, Usuario>();
+
+
+            CreateMap<ProductoDto, Producto>();
+            CreateMap<Producto, ProductoDto>();
         }
     }
 }

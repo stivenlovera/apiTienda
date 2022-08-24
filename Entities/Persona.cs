@@ -21,7 +21,6 @@ namespace apiTienda.Entities
         public string Observaciones { get; set; }
         public string ImageDocumento { get; set; }
         public string Estado { get; set; }
-        [ForeignKey("PersonaId")]
         public Usuario Usuario { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace apiTienda.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,20 +38,6 @@ namespace apiTienda.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuario",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    User = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuario", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Persona",
                 columns: table => new
                 {
@@ -66,17 +52,32 @@ namespace apiTienda.Migrations
                     Dirrecion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageDocumento = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PersonaId = table.Column<int>(type: "int", nullable: true)
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Persona", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Usuario",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    User = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PersonaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuario", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Persona_Usuario_PersonaId",
+                        name: "FK_Usuario_Persona_PersonaId",
                         column: x => x.PersonaId,
-                        principalTable: "Usuario",
-                        principalColumn: "Id");
+                        principalTable: "Persona",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,13 +164,6 @@ namespace apiTienda.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Persona_PersonaId",
-                table: "Persona",
-                column: "PersonaId",
-                unique: true,
-                filter: "[PersonaId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Preventa_ProductoId",
                 table: "Preventa",
                 column: "ProductoId");
@@ -198,13 +192,16 @@ namespace apiTienda.Migrations
                 name: "IX_Tienda_UsuarioId",
                 table: "Tienda",
                 column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuario_PersonaId",
+                table: "Usuario",
+                column: "PersonaId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Persona");
-
             migrationBuilder.DropTable(
                 name: "Preventa");
 
@@ -222,6 +219,9 @@ namespace apiTienda.Migrations
 
             migrationBuilder.DropTable(
                 name: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "Persona");
         }
     }
 }

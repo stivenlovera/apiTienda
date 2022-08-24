@@ -87,13 +87,37 @@ namespace apiTienda.Controllers
                 }
             );
         }
-        [HttpPost("store")]
-        public async Task<ActionResult<string>> store(PersonaCreateDto personaCreateDto)
+        [HttpPost()]
+        public async Task<ActionResult> store(PersonaCreateDto personaCreateDto)
         {
             var persona = _mapper.Map<Persona>(personaCreateDto);
             this._DbContext.Add(persona);
             await this._DbContext.SaveChangesAsync();
-            return "";
+            
+            return Ok();
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<PersonaDto>>> ObtenerTodo()
+        {
+            var personas = await _DbContext.Persona.ToListAsync();
+            return _mapper.Map<List<PersonaDto>>(personas);
+        }
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<PersonaDto>> ObtenerUno(int id)
+        {
+            var persona = await _DbContext.Persona.FirstOrDefaultAsync(persona => persona.Id == id);
+            if (persona == null)
+            {
+                return NotFound();
+            }
+            return _mapper.Map<PersonaDto>(persona);
+        }
+        [HttpGet("{nombre}")]
+        public async Task<ActionResult<List<PersonaDto>>> ObtenerUnoNombre(string nombre)
+        {
+            System.Console.WriteLine("aki");
+            var personas = await _DbContext.Persona.Where(persona => persona.Nombre.Contains(nombre)).ToListAsync();
+            return _mapper.Map<List<PersonaDto>>(personas);
         }
     }
 }

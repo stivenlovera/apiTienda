@@ -1,22 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using apiTienda.Dto.Usuario;
 
-namespace apiTienda.Entities
+namespace apiTienda.Dto.Tienda
 {
-    public class Tienda
+    public class TiendaDto
     {
-        [Key]
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Nit { get; set; }
         public string Dirrecion { get; set; }
         public string Departamento { get; set; }
         public int UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
-        public List<Producto> Productos { get; set; }
+        public UsuarioDto Usuario { get; set; }
     }
 }

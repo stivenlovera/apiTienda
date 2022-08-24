@@ -98,14 +98,7 @@ namespace apiTienda.Migrations
                     b.Property<string>("Observaciones")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PersonaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonaId")
-                        .IsUnique()
-                        .HasFilter("[PersonaId] IS NOT NULL");
 
                     b.ToTable("Persona");
                 });
@@ -226,18 +219,16 @@ namespace apiTienda.Migrations
                     b.Property<string>("User")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("personaId")
+                        .HasColumnType("int")
+                        .HasColumnName("PersonaId");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("personaId")
+                        .IsUnique();
+
                     b.ToTable("Usuario");
-                });
-
-            modelBuilder.Entity("apiTienda.Entities.Persona", b =>
-                {
-                    b.HasOne("apiTienda.Entities.Usuario", "Usuario")
-                        .WithOne("Persona")
-                        .HasForeignKey("apiTienda.Entities.Persona", "PersonaId");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("apiTienda.Entities.Preventa", b =>
@@ -285,6 +276,17 @@ namespace apiTienda.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("apiTienda.Entities.Usuario", b =>
+                {
+                    b.HasOne("apiTienda.Entities.Persona", "Persona")
+                        .WithOne("Usuario")
+                        .HasForeignKey("apiTienda.Entities.Usuario", "personaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Persona");
+                });
+
             modelBuilder.Entity("apiTienda.Entities.Caracteristica", b =>
                 {
                     b.Navigation("Producto");
@@ -293,6 +295,11 @@ namespace apiTienda.Migrations
             modelBuilder.Entity("apiTienda.Entities.Categoria", b =>
                 {
                     b.Navigation("Productos");
+                });
+
+            modelBuilder.Entity("apiTienda.Entities.Persona", b =>
+                {
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("apiTienda.Entities.Producto", b =>
@@ -307,8 +314,6 @@ namespace apiTienda.Migrations
 
             modelBuilder.Entity("apiTienda.Entities.Usuario", b =>
                 {
-                    b.Navigation("Persona");
-
                     b.Navigation("Preventa");
 
                     b.Navigation("Tienda");
