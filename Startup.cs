@@ -20,7 +20,7 @@ namespace apiTienda
                 options =>
                 options.Filters.Add(typeof(FilterExceptions))
             );
-
+            //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddDbContext<AplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
             /* builder.Services.AddDbContext<AplicationDbContext>(option =>option.UseSqlServer(confi)) */
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -36,7 +36,7 @@ namespace apiTienda
             services.AddTransient<MiFilterAction>();
 
             //services.AddHostedService<WriteFileService>();
-            
+
             services.AddResponseCaching();
             services.AddAuthentication(
                 JwtBearerDefaults.AuthenticationScheme

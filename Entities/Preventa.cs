@@ -14,9 +14,8 @@ namespace apiTienda.Entities
         public int Cantidad { get; set; }
         public double PrecioTotal { get; set; }
         public DateTime FechaRegistro { get; set; }
-        [Column("UsuarioId")]
+        public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
-        [Column("ProductoId")]
-        public Producto Producto { get; set; }
+        public List<PreventaProducto> PreventaProducto { get; set; }
     }
 }

@@ -9,16 +9,16 @@ namespace apiTienda.Dto.Persona
 {
     public class PersonaCreateDto
     {
-        public string Ci { get; set; }
+        [Required(ErrorMessage = "El campo nombre es Requerido")]
         public string Nombre { get; set; }
+        [Required(ErrorMessage = "El campo apellido es Requerido")]
         public string Apellido { get; set; }
+        [Required(ErrorMessage = "El campo de nacimiento es Requerido")]
         public DateTime FechaNac { get; set; }
+        [Required(ErrorMessage = "El campo de email es Requerido")]
         public string Email { get; set; }
-        public string Celular { get; set; }
-        public string Dirrecion { get; set; }
-        public string Observaciones { get; set; }
-        public string ImageDocumento { get; set; }
-        public string Estado { get; set; }
+        public string Celular { get; set; } = "";
+        public string Estado { get; set; } = "activo";
         public UsuarioCreateDto Usuario { get; set; }
     }
 }

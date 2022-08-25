@@ -8,8 +8,11 @@ namespace apiTienda.Dto.Usuario
 {
     public class UsuarioCreateDto
     {
-        [Required]
+        [Required(ErrorMessage = "El campo Usuario es Requerido")]
+        [StringLength(20, MinimumLength = 8, ErrorMessage = "Maximo de 20 caracteres y un minimo de 8")]
         public string User { get; set; }
+        [Required(ErrorMessage = "El campo Contraseña es Requerido")]
+        [StringLength(20, MinimumLength = 7, ErrorMessage = "Maximo de 20 caracteres y un minimo de 7")]
         public string Contraseña { get; set; }
     }
 }

@@ -12,17 +12,12 @@ namespace apiTienda.Entities
         [Key]
         public int Id { get; set; }
         public string Nombre { get; set; }
-
         public string Descripcion { get; set; }
         public double Precio { get; set; }
         public int Cantidad { get; set; }
-        [Column("TiendaId")]
-        public Tienda Productos { get; set; }
-        [Column("CategoriaId")]
-        public Categoria Categoria { get; set; }
-        [Column("CaracteristicaId")]
-        public Caracteristica Caracteristica { get; set; }
-        [Column("ProductoId")]
-        public List<Preventa> Preventa { get; set; }
+        public int SubCategoriaId { get; set; }
+        public SubCategoria SubCategoria { get; set; }
+        public List<ProductoTienda> ProductosTienda { get; set; }
+        public List<PreventaProducto> PreventaProducto { get; set; }
     }
 }

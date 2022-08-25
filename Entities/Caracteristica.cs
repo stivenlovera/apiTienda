@@ -12,8 +12,9 @@ namespace apiTienda.Entities
         [Key]
         public int Id { get; set; }
         public string Descripcion { get; set; }
+         [Column(TypeName = "text")]
         public string Otros { get; set; }
-        [ForeignKey("CaracteristicaId")]
-        public List<Producto> Producto { get; set; }
+        public int ProductoTiendaId { get; set; }
+        public ProductoTienda ProductoTienda { get; set; }
     }
 }

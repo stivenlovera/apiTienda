@@ -8,6 +8,8 @@ using apiTienda.Dto.Persona;
 using apiTienda.Entities;
 using apiTienda.Dto.Usuario;
 using apiTienda.Dto.Producto;
+using apiTienda.Dto.Vendedor;
+using apiTienda.Dto.VendedorDocumento;
 
 namespace apiTienda.Utilidades
 {
@@ -17,15 +19,19 @@ namespace apiTienda.Utilidades
         {
             CreateMap<PersonaCreateDto, Persona>();
             CreateMap<Persona, PersonaDto>();
-            CreateMap<PersonaCreateDto, Persona>();
 
-            CreateMap<UsuarioDto, Usuario>();
-            CreateMap<Usuario, UsuarioDto>();
+            CreateMap<VendedorCreateDto, Vendedor>();
+            CreateMap<Vendedor, VendedorDto>();
+
+            CreateMap<VendedorArchivoCreateDto, VendedorArchivo>();
+            CreateMap<VendedorArchivo, VendedorArchivoDto>();
+
             CreateMap<UsuarioCreateDto, Usuario>();
-
+            CreateMap<Usuario, UsuarioDto>();
 
             CreateMap<ProductoDto, Producto>();
             CreateMap<Producto, ProductoDto>();
+
         }
     }
 }

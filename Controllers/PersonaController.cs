@@ -93,13 +93,15 @@ namespace apiTienda.Controllers
             var persona = _mapper.Map<Persona>(personaCreateDto);
             this._DbContext.Add(persona);
             await this._DbContext.SaveChangesAsync();
-            
-            return Ok();
+
+            return Ok(new{
+                message="registrado correctamente"
+            });
         }
         [HttpGet]
         public async Task<ActionResult<List<PersonaDto>>> ObtenerTodo()
         {
-            var personas = await _DbContext.Persona.ToListAsync();
+            var personas = await _DbContext.Persona.Include(personas=>personas.Usuario).ToListAsync();
             return _mapper.Map<List<PersonaDto>>(personas);
         }
         [HttpGet("{id:int}")]
