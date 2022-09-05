@@ -14,6 +14,5 @@ namespace apiTienda.Dto.Tienda
         public string Dirrecion { get; set; }
         public string Departamento { get; set; }
         public int UsuarioId { get; set; }
-        public UsuarioDto Usuario { get; set; }
     }
 }

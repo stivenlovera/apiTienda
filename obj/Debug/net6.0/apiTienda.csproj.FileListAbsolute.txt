@@ -64,3 +64,8 @@ E:\STIVEN\apiTienda\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBear
 E:\STIVEN\apiTienda\bin\Debug\net6.0\apiTienda.staticwebassets.runtime.json
 E:\STIVEN\apiTienda\bin\Debug\net6.0\AutoMapper.dll
 E:\STIVEN\apiTienda\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\STIVEN\apiTienda\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\STIVEN\apiTienda\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\STIVEN\apiTienda\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\STIVEN\apiTienda\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+E:\STIVEN\apiTienda\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll

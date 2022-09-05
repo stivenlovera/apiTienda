@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using apiTienda.Dto.Caracteristica;
+using apiTienda.Dto.Categoria;
 using apiTienda.Dto.Tienda;
-using apiTienda.Entities;
 
 namespace apiTienda.Dto.Producto
 {
@@ -14,8 +11,8 @@ namespace apiTienda.Dto.Producto
         public string Descripcion { get; set; }
         public double Precio { get; set; }
         public int Cantidad { get; set; }
-        public TiendaDto Productos { get; set; }
-        public Categoria Categoria { get; set; }
-        public Caracteristica Caracteristica { get; set; }
+        public TiendaDto Tienda { get; set; }
+        public CategoriaDto Categoria { get; set; }
+        public CaracteristicaDto Caracteristica { get; set; }
     }
 }

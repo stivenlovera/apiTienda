@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using apiTienda.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace apiTienda
 {
-    public class AplicationDbContext : DbContext
+    public class AplicationDbContext : IdentityDbContext
     {
         public AplicationDbContext(DbContextOptions option) : base(option)
         {

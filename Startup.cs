@@ -1,9 +1,14 @@
 
+using System.Text;
 using apiTienda.Filtros;
 using apiTienda.IServicios;
 using apiTienda.Middelwares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+
 namespace apiTienda
 {
     public class Startup
@@ -40,9 +45,55 @@ namespace apiTienda
             services.AddResponseCaching();
             services.AddAuthentication(
                 JwtBearerDefaults.AuthenticationScheme
-            ).AddJwtBearer();
-            services.AddSwaggerGen();
+            ).AddJwtBearer(
+                options =>
+                {
+                    options.TokenValidationParameters =
+                        new TokenValidationParameters
+                        {
+                            ValidateIssuer = false,
+                            ValidateAudience = false,
+                            ValidateLifetime = true,
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(
+                                Encoding.UTF8.GetBytes(Configuration["jwt"])
+                            ),
+                            ClockSkew = TimeSpan.Zero
+                        };
+                }
+            );
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "web api tienda", Version = "v1" });
+                c.AddSecurityDefinition(
+                  "Bearer",
+                   new OpenApiSecurityScheme
+                   {
+                       Name = "autorization",
+                       Scheme = "Bearer",
+                       Type = SecuritySchemeType.ApiKey,
+                       BearerFormat = "JWT",
+                       In = ParameterLocation.Header
+                   });
+                c.AddSecurityRequirement(
+                  new OpenApiSecurityRequirement
+                  {
+                    {
+                        new OpenApiSecurityScheme{
+                            Reference= new OpenApiReference{
+                                Type=ReferenceType.SecurityScheme,
+                                Id="Bearer"
+                            }
+                        },
+                        new string[]{
+                            
+                        }
+                    }
+                  }
+                );
+            });
             services.AddAutoMapper(typeof(Startup));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AplicationDbContext>().AddDefaultTokenProviders();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
@@ -55,7 +106,9 @@ namespace apiTienda
             // Configure the HTTP request pipeline.
             if (env.IsDevelopment())
             {
-                app.UseSwagger();
+                app.UseSwagger(
+                );
+
                 app.UseSwaggerUI();
             }
             app.UseHttpsRedirection();
